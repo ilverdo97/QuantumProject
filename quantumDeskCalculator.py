@@ -1,5 +1,5 @@
 from qiskit import *
-from operations import addition, subtraction, multiplication, division
+from operation import addition, subtraction, multiplication, division
 from utils import bcolors, selectOperator, checkOperation, printResult, initQubits
 import math
 
