@@ -49,5 +49,5 @@ python quantumDeskCalculator.py
 
 ## Authors
 
-* **Luca Marzari** - [LM095](https://github.com/LM095)
-* **Deborah Pintani** - [DebbyX3](https://github.com/DebbyX3)
+* **Luca Verdolini** - [ilverdo97](https://github.com/ilverdo97)
+* **Federico Graziola** - [Graziolo98](https://github.com/Graziolo98)
