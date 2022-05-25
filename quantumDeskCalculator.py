@@ -1,5 +1,5 @@
 from qiskit import *
-from operation import addition, subtraction, multiplication, division
+from operations import addition, subtraction, multiplication, division
 from utils import bcolors, selectOperator, checkOperation, printResult, initQubits
 import math
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
             print(bcolors.FAIL + "Invalid second input number" + bcolors.ENDC)
             input2 = int(input(bcolors.WARNING + "Enter a second positive integer between 0 and 2047:\n" + bcolors.ENDC))
 
-    #check if the operation is valid
+    #check if the operations is valid
     checkOperation(input1, input2, operator)
 
 
@@ -57,10 +57,10 @@ if __name__ == "__main__":
 
     print()
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
-    print(bcolors.BOLD + bcolors.OKCYAN + 'You want to perform the following operation:'+ bcolors.ENDC)
+    print(bcolors.BOLD + bcolors.OKCYAN + 'You want to perform the following operations:'+ bcolors.ENDC)
     print(bcolors.BOLD + bcolors.OKCYAN + f'{input1} {operator} {input2} --> {first} {operator} {second} = ...' + bcolors.ENDC)
 
-    # create the register based on the operation choosen
+    # create the register based on the operations choosen
 
     # Add a qbit to 'a' and 'b' in case of overflowing results
     # (the result is only read on 'a' or 'accumulator', but since 'a' (or 'accumulator') and 'b'
