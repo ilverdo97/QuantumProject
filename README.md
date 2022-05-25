@@ -2,8 +2,8 @@
 
 
 ## Problem definition
-The task is to build a quantum circuit that performs the difference between the binary representation of two positive integers. The circuit can be defined as a variation of the quantum adder explained in class and using the Quantum Fourier Transform. The circuit must be implemented in `qiskit` and demonstrated on a one or two instances. The project can be extended with the implementation of a complete desk calculator.
-
+The task is to build quantum circuits that perform arithmetic operations between the binary reprentations of two positive integers.
+The circuit must be implemented in Qiskit and demonstrated on a one or two instances.
 
 
 ## Implementation details
@@ -22,7 +22,7 @@ The task is to build a quantum circuit that performs the difference between the 
 ### Clone the repository
 
 ```
-git clone https://github.com/LM095/QuantumDeskCalculator
+git clone https://github.com/ilverdo97/QuantumProject
 cd QuantumDeskCalculator
 ```
 ### Run the program
