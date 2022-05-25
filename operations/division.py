@@ -4,8 +4,6 @@ from operations import addition, subtraction
 
 pie = math.pi
 
-
-
 def div(dividend, divisor, accumulator,c_dividend, circ, cl_index):
     d = QuantumRegister(1)
     circ.add_register(d)

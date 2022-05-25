@@ -1,6 +1,5 @@
 import math
-from qiskit import *
-from utils import bcolors, executeQFT, evolveQFTStateSub, inverseQFT
+from functions.utilsQFT import executeQFT, evolveQFTStateSub, inverseQFT
 
 pie = math.pi
 
