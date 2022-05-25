@@ -1,5 +1,5 @@
 # Quantum Desk Calculator with Qiskit
-##
+
 ## Problem definition
 The task is to build quantum circuits that perform arithmetic operations between the binary reprentations of two positive integers.
 The circuit must be implemented in Qiskit and demonstrated on a one or two instances.
