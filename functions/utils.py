@@ -27,11 +27,11 @@ def checkNumber(input1, input2):
     # check the inputs
     while (input1 < 0 or input1 > 2047) or (input2 < 0 or input2 > 2047):
         if input1 < 0 or input1 > 2047:
-            #print(bcolors.FAIL + "Invalid first input number" + bcolors.ENDC)
+            print(bcolors.FAIL + "Invalid first input number" + bcolors.ENDC)
             input1 = int(input(bcolors.WARNING + "Enter a first positive integer between 0 and 2047:\n" + bcolors.ENDC))
 
         if input2 < 0 or input2 > 2047:
-            #print(bcolors.FAIL + "Invalid second input number" + bcolors.ENDC)
+            print(bcolors.FAIL + "Invalid second input number" + bcolors.ENDC)
             input2 = int(input(bcolors.WARNING + "Enter a second positive integer between 0 and 2047:\n" + bcolors.ENDC))
 
     return input1, input2
