@@ -1,6 +1,6 @@
-from qiskit import *
-from operations import addition, subtraction, multiplication, division
-from functions.utils import bcolors, selectOperator, checkOperation, printResult, initQubits, checkNumber
+import qiskit
+from operations.operationss import *
+from functions.utils import *
 
 if __name__ == "__main__":
     print(bcolors.OKGREEN + '############################################################' + bcolors.ENDC)
@@ -48,13 +48,13 @@ if __name__ == "__main__":
     # Add a qbit to 'a' and 'b' in case of overflowing results
     # (the result is only read on 'a' or 'accumulator', but since 'a' (or 'accumulator') and 'b'
     # should have the same lenght, we also add a qbit to 'b')
-    a = QuantumRegister(n+1, "a") 
-    b = QuantumRegister(n+1, "b")
-    accumulator = QuantumRegister(n+1, "accumulator")     
-    cl = ClassicalRegister(n+1, "cl")
+    a = qiskit.QuantumRegister(n + 1, "a")
+    b = qiskit.QuantumRegister(n + 1, "b")
+    accumulator = qiskit.QuantumRegister(n + 1, "accumulator")
+    cl = qiskit.ClassicalRegister(n + 1, "cl")
 
     if operator == '+' or operator == '-' or operator == '*':     
-        qc = QuantumCircuit(a, b, cl, name="qc")
+        qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
         # Flip the corresponding qubit in register a if a bit in the string first is a 1
         initQubits(first, qc, a, n)
         # Flip the corresponding qubit in register b if b bit in the string second is a 1
@@ -62,23 +62,23 @@ if __name__ == "__main__":
             initQubits(second, qc, b, n)
 
         if operator == '+':
-            addition.sum(a,b,qc)
+            sum(a,b,qc)
             printResult(first, second, qc,a, cl, n, operator)
         
         elif operator == '-':
-            subtraction.sub(a,b,qc)
+            sub(a,b,qc)
             printResult(first, second, qc,a, cl, n, operator)
         elif operator == '*':
-            multiplication.multiply(a,input2,b,qc)
+            multiply(a,input2,b,qc)
             printResult(first, second, qc, b, cl, n,operator)
 
     elif operator == '/':
-        qc = QuantumCircuit(a, b, accumulator, cl, name="qc")
+        qc = qiskit.QuantumCircuit(a, b, accumulator, cl, name="qc")
         # Flip the corresponding qubit in register a and b if a,b bit in the string first,second is a 1
         initQubits(first, qc, a, n)
         initQubits(second, qc, b, n)
         
-        division.div(a, b, accumulator, cl, qc, 0)
+        div(a, b, accumulator, cl, qc, 0)
         printResult(first, second, qc, accumulator, cl, n, operator)
 
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
