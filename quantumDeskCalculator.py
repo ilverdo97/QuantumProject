@@ -26,17 +26,7 @@ if __name__ == "__main__":
     # Making sure that 'first' and 'second' are of the same length 
     # by padding the smaller string with zeros
 
-    if operator == '+' or operator == '-' or operator == '/':
-        if len2>len1:
-            first,second = second, first
-            len2, len1 = len1, len2
-        second = ("0") * (len1 - len2) + second
-        n = len1
-    elif operator == '*' :
-        # Padding 'first' the same lenght of 'result'
-        # since result can have at max len(first) + len(second) bits when multiplying
-        first = ("0") * (len2) + first
-        n = len1 + len2
+    nqubit, len1, len2, first, second = NQubit(operator, len1, len2, first, second)
 
     print()
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
@@ -48,37 +38,37 @@ if __name__ == "__main__":
     # Add a qbit to 'a' and 'b' in case of overflowing results
     # (the result is only read on 'a' or 'accumulator', but since 'a' (or 'accumulator') and 'b'
     # should have the same lenght, we also add a qbit to 'b')
-    a = qiskit.QuantumRegister(n + 1, "a")
-    b = qiskit.QuantumRegister(n + 1, "b")
-    accumulator = qiskit.QuantumRegister(n + 1, "accumulator")
-    cl = qiskit.ClassicalRegister(n + 1, "cl")
+    a = qiskit.QuantumRegister(nqubit + 1, "a")
+    b = qiskit.QuantumRegister(nqubit + 1, "b")
+    accumulator = qiskit.QuantumRegister(nqubit + 1, "accumulator")
+    cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
 
     if operator == '+' or operator == '-' or operator == '*':     
         qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
         # Flip the corresponding qubit in register a if a bit in the string first is a 1
-        initQubits(first, qc, a, n)
+        initQubits(first, qc, a, nqubit)
         # Flip the corresponding qubit in register b if b bit in the string second is a 1
         if operator != '*':
-            initQubits(second, qc, b, n)
+            initQubits(second, qc, b, nqubit)
 
         if operator == '+':
             sum(a,b,qc)
-            printResult(first, second, qc,a, cl, n, operator)
+            printResult(first, second, qc, a, cl, nqubit, operator)
         
         elif operator == '-':
             sub(a,b,qc)
-            printResult(first, second, qc,a, cl, n, operator)
+            printResult(first, second, qc, a, cl, nqubit, operator)
         elif operator == '*':
             multiply(a,input2,b,qc)
-            printResult(first, second, qc, b, cl, n,operator)
+            printResult(first, second, qc, b, cl, nqubit, operator)
 
     elif operator == '/':
         qc = qiskit.QuantumCircuit(a, b, accumulator, cl, name="qc")
         # Flip the corresponding qubit in register a and b if a,b bit in the string first,second is a 1
-        initQubits(first, qc, a, n)
-        initQubits(second, qc, b, n)
+        initQubits(first, qc, a, nqubit)
+        initQubits(second, qc, b, nqubit)
         
         div(a, b, accumulator, cl, qc, 0)
-        printResult(first, second, qc, accumulator, cl, n, operator)
+        printResult(first, second, qc, accumulator, cl, nqubit, operator)
 
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)

@@ -2,7 +2,7 @@
 #-----------------------------------------------------------------------------------------------------
 import math
 from qiskit import *
-from QuantumProject.functions.utilsQFT import *
+from functions.utilsQFT import *
 
 
 pie = math.pi
@@ -24,11 +24,6 @@ def sum(a, b, qc):
 
 #SUBTRACTION------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-import math
-from qiskit import *
-from QuantumProject.functions.utilsQFT import *
-pie = math.pi
-
 def sub(a, b, qc):
     n = len(a)
 
@@ -45,11 +40,6 @@ def sub(a, b, qc):
 
 #MULTIPLICATION---------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-import math
-from qiskit import *
-from QuantumProject.functions.utilsQFT import *
-pie = math.pi
-
 
 def multiply(a, secondDec, result, qc):
     n = len(a) - 1
@@ -70,13 +60,6 @@ def multiply(a, secondDec, result, qc):
 
 #DIVISION---------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-import math
-from qiskit import *
-from QuantumProject.functions.utilsQFT import *
-
-pie = math.pi
-
-
 def div(dividend, divisor, accumulator, c_dividend, circ, cl_index):
     d = QuantumRegister(1)
     circ.add_register(d)
