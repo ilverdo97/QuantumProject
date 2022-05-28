@@ -1,5 +1,7 @@
 from qiskit import *
 import math
+import time
+import progressbar
 
 class bcolors:
     HEADER = '\033[95m'
@@ -55,12 +57,16 @@ def printResult(first, second, qc,result, cl, n, operator):
 
     # Set chosen backend and execute job
     num_shots = 100 #Setting the number of times to repeat measurement
-    print(bcolors.BOLD + bcolors.OKCYAN + 'Connect!' + bcolors.ENDC)
-    print(bcolors.BOLD + bcolors.OKCYAN + f'Running the experiment on {num_shots} shots...' + bcolors.ENDC)
+    #print(bcolors.BOLD + bcolors.OKCYAN + 'Connect!' + bcolors.ENDC)
+    #print(bcolors.BOLD + bcolors.OKCYAN + f'Running the experiment on {num_shots} shots...' + bcolors.ENDC)
     job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=num_shots)
+
+    for i in progressbar.progressbar(range(100)):
+        time.sleep(0.02)
 
     # Get results of program
     job_stats = job.result().get_counts()
+
     for key, value in job_stats.items():
         res = key
         prob = value

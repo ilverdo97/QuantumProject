@@ -3,9 +3,9 @@ from operations.operationss import *
 from functions.utils import *
 
 if __name__ == "__main__":
-    print(bcolors.OKGREEN + '############################################################' + bcolors.ENDC)
-    print(bcolors.OKGREEN + '################  Quantum Desk Calculator  #################' + bcolors.ENDC)
-    print(bcolors.OKGREEN + '############################################################'+ bcolors.ENDC)
+    print(bcolors.OKGREEN + '##########################################' + bcolors.ENDC)
+    print(bcolors.OKGREEN + '#######  Quantum Desk Calculator  ########' + bcolors.ENDC)
+    print(bcolors.OKGREEN + '##########################################'+ bcolors.ENDC)
 
     # take the operator and check
     operator = selectOperator()    
