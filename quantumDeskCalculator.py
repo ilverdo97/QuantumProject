@@ -3,9 +3,9 @@ from operations import addition, subtraction, multiplication, division
 from functions.utils import bcolors, selectOperator, checkOperation, printResult, initQubits, checkNumber
 
 if __name__ == "__main__":
-    print(bcolors.OKGREEN + '############################################################' + bcolors.ENDC)
-    print(bcolors.OKGREEN + '################  Quantum Desk Calculator  #################' + bcolors.ENDC)
-    print(bcolors.OKGREEN + '############################################################'+ bcolors.ENDC)
+    print(bcolors.OKGREEN + '##########################################' + bcolors.ENDC)
+    print(bcolors.OKGREEN + '#######  Quantum Desk Calculator  ########' + bcolors.ENDC)
+    print(bcolors.OKGREEN + '##########################################'+ bcolors.ENDC)
 
     # take the operator and check
     operator = selectOperator()    
