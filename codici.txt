@@ -1,0 +1,75 @@
+    ''''
+        match operator:
+            case '+':
+                qc = Addiction(a, b, cl, first, second, nqubit)
+                printResult(first, second, qc, a, cl, nqubit, operator)  
+            case '-':
+                qc = Sottra(a, b, cl, first, second, nqubit)
+                printResult(first, second, qc, a, cl, nqubit, operator)  
+            case '*':
+                qc = Multi(a, b, cl, first, second, input2, nqubit)
+                printResult(first, second, qc, a, cl, nqubit, operator)  
+            case '/':
+                qc = Division(a, b, accumulator, cl, first, second, nqubit)
+                printResult(first, second, qc, accumulator, cl, nqubit, operator)
+
+        print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
+
+
+from qiskit import *
+from operations.operationss import *
+
+def NqubitOperator(operator, len1, len2, first, second):
+
+    if operator == '+' or operator == '-' or operator == '/':
+        if len2>len1:
+            first,second = second, first
+            len2, len1 = len1, len2
+        second = ("0") * (len1 - len2) + second
+        tmpnqbit = len1
+    elif operator == '*' :
+        # Padding 'first' the same lenght of 'result'
+        # since result can have at max len(first) + len(second) bits when multiplying
+        first = ("0") * (len2) + first
+        tmpnqbit = len1 + len2
+
+    return tmpnqbit, len1, len2, first, second
+
+def Addiction(a, b, cl, first, second, nqubit):
+    qc = QuantumCircuit(a, b, cl, name="qc")
+    # Flip the corresponding qubit in register a if a bit in the string first is a 1
+    initQubits(first, qc, a, nqubit)
+    #initQubits(second, qc, a, nqubit)
+    sum(a, b, qc)
+    return qc
+
+def Sottra(a, b, cl, first, second, nqubit):
+    qc = QuantumCircuit(a, b, cl, name="qc")
+    # Flip the corresponding qubit in register a if a bit in the string first is a 1
+    initQubits(first, qc, a, nqubit)
+    sub(a, b, qc)
+    return qc
+
+def Multi(a, b, cl, first, second, input2, nqubit):
+    qc = QuantumCircuit(a, b, cl, name="qc")
+    # Flip the corresponding qubit in register a if a bit in the string first is a 1
+    initQubits(first, qc, a, nqubit)
+    initQubits(second, qc, a, nqubit)
+    mul(a, input2, b, qc)
+    return qc
+
+def Division(a, b, accumulator, cl, first, second, nqubit):
+    qc = QuantumCircuit(a, b, accumulator, cl, name="qc")
+    # Flip the corresponding qubit in register a and b if a,b bit in the string first,second is a 1
+    initQubits(first, qc, a, nqubit)
+    initQubits(second, qc, b, nqubit)
+
+    div(a, b, accumulator, cl, qc, 0)
+    return qc
+
+def initQubits(str, qc, reg, n):
+    # Flip the corresponding qubit in register if a bit in the string is a 1
+    for i in range(n):
+        if str[i] == "1":
+            qc.x(reg[n-(i+1)])
+    '''
