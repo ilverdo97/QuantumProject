@@ -1,3 +1,5 @@
+from qiskit import *
+
 def initQubits(str, qc, reg, n):
     # Flip the corresponding qubit in register if a bit in the string is a 1
     for i in range(n):
