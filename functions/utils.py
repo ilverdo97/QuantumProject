@@ -70,4 +70,6 @@ def printResult(first, second, qc,result, cl, n, operator):
     for key, value in job_stats.items():
         res = key
         prob = value
+
     print(bcolors.BOLD + bcolors.OKGREEN + f'\n{first} {operator} {second} = {res} with a probability of {prob}%' + bcolors.ENDC)
+    print(bcolors.BOLD + bcolors.OKGREEN + f'\n{int(first, 2)} {operator} {int(second,2)} = {int(res, 2)} with a probability of {prob}%' + bcolors.ENDC)

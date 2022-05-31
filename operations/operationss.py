@@ -74,8 +74,7 @@ def div(dividend, divisor, accumulator, c_dividend, circ, cl_index):
         for i in range(len(dividend)):
             circ.measure(dividend[i], c_dividend[i])
 
-        result = execute(circ, backend=Aer.get_backend('qasm_simulator'),
-                         shots=10).result()
+        result = execute(circ, backend=Aer.get_backend('qasm_simulator'), shots=10).result()
 
         counts = result.get_counts("qc")
         # print(counts)
