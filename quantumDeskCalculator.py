@@ -31,8 +31,8 @@ if __name__ == "__main__":
 
     print()
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
-    print(bcolors.BOLD + bcolors.OKCYAN + 'You want to perform the following operations:'+ bcolors.ENDC)
-    print(bcolors.BOLD + bcolors.OKCYAN + f'{input1} {operator} {input2} --> {first} {operator} {second} = ...' + bcolors.ENDC)
+    print('You want to perform the following operations:')
+    print(f'{input1} {operator} {input2} = ...')
 
     # create the register based on the operations choosen
 
