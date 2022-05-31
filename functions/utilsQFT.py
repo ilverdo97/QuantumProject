@@ -16,6 +16,8 @@ def executeQFT(qc, reg, n, pie):
         # cp(theta, control_qubit, target_qubit[, …])
         qc.cp(pie / float(2 ** (i + 1)), reg[n - (i + 1)], reg[n])
 
+    #print(qc.draw())
+
 '''
 qc: input quantum circuit
 reg_a: first input register to execute QFT

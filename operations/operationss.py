@@ -4,12 +4,12 @@ import math
 from qiskit import *
 from functions.utilsQFT import *
 
-
 pie = math.pi
 
 def sum(a, b, qc):
     n = len(a) - 1
     # Compute the Fourier transform of register a
+
     for i in range(n + 1):
         executeQFT(qc, a, n - i, pie)
 

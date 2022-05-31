@@ -1,6 +1,7 @@
 import qiskit
 from operations.operationss import *
 from functions.utils import *
+from functions.utilsQubit import *
 
 if __name__ == "__main__":
     print(bcolors.OKGREEN + '##########################################' + bcolors.ENDC)
