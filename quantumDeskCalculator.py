@@ -19,8 +19,8 @@ if __name__ == "__main__":
     # check if the operations is valid
     checkOperation(input1, input2, operator)
 
-    first = '{0:{fill}3b}'.format(input1, fill='0')
-    second = '{0:{fill}3b}'.format(input2, fill='0')
+    first = '{0:{fill}5b}'.format(input1, fill='0')
+    second = '{0:{fill}5b}'.format(input2, fill='0')
     len1 = len(first)
     len2 = len(second)
 
@@ -28,8 +28,6 @@ if __name__ == "__main__":
     # by padding the smaller string with zeros
 
     nqubit, len1, len2, first, second = NQubit(operator, len1, len2, first, second)
-
-    print()
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
     print('You want to perform the following operations:')
     print(f'{input1} {operator} {input2} = ...')
@@ -60,8 +58,8 @@ if __name__ == "__main__":
             sub(a,b,qc)
             printResult(first, second, qc, a, cl, nqubit, operator)
         elif operator == '*':
-            multiply(a,input2,b,qc)
-            printResult(first, second, qc, b, cl, nqubit, operator)
+            exponential(a, first, input1, input2, b, qc, cl, nqubit)
+
 
     elif operator == '/':
         qc = qiskit.QuantumCircuit(a, b, accumulator, cl, name="qc")
@@ -69,7 +67,7 @@ if __name__ == "__main__":
         initQubits(first, qc, a, nqubit)
         initQubits(second, qc, b, nqubit)
         
-        div(a, b, accumulator, cl, qc, 0)
+        div(a, b, accumulator, cl, qc, 0, nqubit, first, second)
         printResult(first, second, qc, accumulator, cl, nqubit, operator)
 
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)

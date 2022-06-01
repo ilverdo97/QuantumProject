@@ -1,8 +1,13 @@
 #ADDICTION--------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
 import math
+
+import qiskit
 from qiskit import *
+
+from functions.utils import printResult
 from functions.utilsQFT import *
+from functions.utilsQubit import initQubits
 
 pie = math.pi
 
@@ -60,7 +65,7 @@ def multiply(a, secondDec, result, qc):
 
 #DIVISION---------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-def div(dividend, divisor, accumulator, c_dividend, circ, cl_index):
+def div(dividend, divisor, accumulator, c_dividend, circ, cl_index, nqubit, first, second):
     d = QuantumRegister(1)
     circ.add_register(d)
     circ.x(d[0])
@@ -80,4 +85,43 @@ def div(dividend, divisor, accumulator, c_dividend, circ, cl_index):
         # print(counts)
         c_dividend_str = list(counts.keys())[0]  # .split()[0]
 
+        a = qiskit.QuantumRegister(nqubit + 1, "a")
+        b = qiskit.QuantumRegister(nqubit + 1, "b")
+        cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
+        qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
+
+        initQubits(first, qc, a, nqubit)
+        initQubits(second, qc, b, nqubit)
+
     sub(accumulator, d, circ)
+
+#EXPONENTIAL------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------
+
+def exponential(a, firstDecBinary, firstDec, secondDec, result, qc, cl, nqubit):
+
+    for x in range(secondDec):
+
+        print(firstDecBinary, firstDec)
+
+        multiply(a, firstDec, result, qc)
+
+        # Measure qubits
+        for i in range(nqubit + 1):
+            qc.measure(result[i], cl[i])
+
+        job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=10)
+
+        # Get results of program
+        job_stats = job.result().get_counts()
+
+        for key, value in job_stats.items():
+            tmp = key
+
+        a = qiskit.QuantumRegister(nqubit + 1, "a")
+        b = qiskit.QuantumRegister(nqubit + 1, "b")
+        cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
+        qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
+
+        initQubits(firstDecBinary, qc, a, nqubit)
+        firstDec = int(tmp, 2)

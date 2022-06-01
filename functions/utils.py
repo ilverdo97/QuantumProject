@@ -15,8 +15,8 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def selectOperator():
-    valid_operators = ["+", "-", "*", "/"]
-    operator = input("\nSelect one operator [+ addition, - subtraction, * multiplication, / division]:  ")
+    valid_operators = ["+", "-", "*", "/", "^"]
+    operator = input("\nSelect one operator [+ addition, - subtraction, * multiplication, / division, ^ exponential]:  ")
     
     # Check valid operator
     if not(operator in valid_operators):
@@ -29,11 +29,9 @@ def checkNumber(input1, input2):
     # check the inputs
     while (input1 < 0 or input1 > 2047) or (input2 < 0 or input2 > 2047):
         if input1 < 0 or input1 > 2047:
-            #print(bcolors.FAIL + "Invalid first input number" + bcolors.ENDC)
             input1 = int(input("Enter a first positive integer between 0 and 2047:\n"))
 
         if input2 < 0 or input2 > 2047:
-            #print(bcolors.FAIL + "Invalid second input number" + bcolors.ENDC)
             input2 = int(input("Enter a second positive integer between 0 and 2047:\n"))
 
     return input1, input2
@@ -73,3 +71,5 @@ def printResult(first, second, qc, result, cl, n, operator):
 
     #print(bcolors.BOLD + bcolors.OKGREEN + f'\n{first} {operator} {second} = {res} with a probability of {prob}%' + bcolors.ENDC)
     print(bcolors.BOLD + bcolors.OKGREEN + f'\n{int(first, 2)} {operator} {int(second,2)} = {int(res, 2)} with a probability of {prob}%' + bcolors.ENDC)
+
+    #print(qc.decompose().draw())
