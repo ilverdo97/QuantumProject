@@ -13,7 +13,7 @@ def NQubit(operator, len1, len2, first, second):
             len2, len1 = len1, len2
         second = ("0") * (len1 - len2) + second
         tmpnqubit = len1
-    elif operator == '*' :
+    elif operator == '*' or operator == '^':
         # Padding 'first' the same lenght of 'result'
         # since result can have at max len(first) + len(second) bits when multiplying
         first = ("0") * (len2) + first

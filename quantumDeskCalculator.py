@@ -1,5 +1,6 @@
 import qiskit
-from operations.operationss import *
+from operations.operationsADVANCE import *
+from operations.operationsBASE import *
 from functions.utils import *
 from functions.utilsQubit import *
 
@@ -42,23 +43,26 @@ if __name__ == "__main__":
     accumulator = qiskit.QuantumRegister(nqubit + 1, "accumulator")
     cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
 
-    if operator == '+' or operator == '-' or operator == '*':     
+    if operator == '+' or operator == '-' or operator == '*' or operator == '^':
         qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
         # Flip the corresponding qubit in register a if a bit in the string first is a 1
         initQubits(first, qc, a, nqubit)
         # Flip the corresponding qubit in register b if b bit in the string second is a 1
-        if operator != '*':
+        if operator == '+' or operator == '-':
             initQubits(second, qc, b, nqubit)
 
         if operator == '+':
             sum(a,b,qc)
             printResult(first, second, qc, a, cl, nqubit, operator)
-        
         elif operator == '-':
             sub(a,b,qc)
             printResult(first, second, qc, a, cl, nqubit, operator)
         elif operator == '*':
-            exponential(a, first, input1, input2, b, qc, cl, nqubit)
+            multiply(a,input2,b,qc)
+            printResult(first, second, qc, b, cl, nqubit ,operator)
+        elif operator == '^':
+            exponential(a, first, input1, input2, operator, b, qc, cl, nqubit)
+            #printResult(first, second, qc, a, cl, nqubit , operator)
 
 
     elif operator == '/':
