@@ -73,3 +73,33 @@ def initQubits(str, qc, reg, n):
         if str[i] == "1":
             qc.x(reg[n-(i+1)])
     '''
+
+
+    d = QuantumRegister(1)
+    circ.add_register(d)
+    circ.x(d[0])
+
+    c_dividend_str = '0'
+
+    while c_dividend_str[0] == '0':
+        sub(dividend, divisor, circ)
+        sum(accumulator, d, circ)
+
+        for i in range(len(dividend)):
+            circ.measure(dividend[i], c_dividend[i])
+
+        result = execute(circ, backend=Aer.get_backend('qasm_simulator'), shots=10).result()
+
+        counts = result.get_counts("qc")
+        # print(counts)
+        c_dividend_str = list(counts.keys())[0]  # .split()[0]
+
+        a = qiskit.QuantumRegister(nqubit + 1, "a")
+        b = qiskit.QuantumRegister(nqubit + 1, "b")
+        cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
+        qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
+
+        initQubits(first, qc, a, nqubit)
+        initQubits(second, qc, b, nqubit)
+
+    sub(accumulator, d, circ)

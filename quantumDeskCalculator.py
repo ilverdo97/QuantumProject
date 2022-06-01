@@ -66,12 +66,13 @@ if __name__ == "__main__":
 
 
     elif operator == '/':
-        qc = qiskit.QuantumCircuit(a, b, accumulator, cl, name="qc")
+        qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
         # Flip the corresponding qubit in register a and b if a,b bit in the string first,second is a 1
         initQubits(first, qc, a, nqubit)
         initQubits(second, qc, b, nqubit)
         
-        div(a, b, accumulator, cl, qc, 0, nqubit, first, second)
-        printResult(first, second, qc, accumulator, cl, nqubit, operator)
+        #div(a, b, accumulator, cl, qc, 0, nqubit, first, second)
+        div(first, second, a, b, qc, nqubit, cl)
+        #printResult(first, second, qc, accumulator, cl, nqubit, operator)
 
     print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)

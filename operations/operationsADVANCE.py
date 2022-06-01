@@ -15,36 +15,46 @@ from functions.utilsQubit import initQubits
 #-----------------------------------------------------------------------------------------------------
 from operations.operationsBASE import *
 
+#def div(dividend, divisor, accumulator, c_dividend, qc, cl_index, nqubit, first, second):
+def div(first, second, dividend, divisor, qc, nqubit, cl):
+    while True:
+        sub(dividend, divisor, qc)
 
-def div(dividend, divisor, accumulator, c_dividend, circ, cl_index, nqubit, first, second):
-    d = QuantumRegister(1)
-    circ.add_register(d)
-    circ.x(d[0])
+        # Measure qubits
+        for i in range(nqubit + 1):
+            qc.measure(dividend[i], cl[i])
 
-    c_dividend_str = '0'
+        job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=100)
 
-    while c_dividend_str[0] == '0':
-        sub(dividend, divisor, circ)
-        sum(accumulator, d, circ)
+        # Get results of program
+        job_stats = job.result().get_counts()
 
-        for i in range(len(dividend)):
-            circ.measure(dividend[i], c_dividend[i])
+        for key, value in job_stats.items():
+            tmp = key
 
-        result = execute(circ, backend=Aer.get_backend('qasm_simulator'), shots=10).result()
+        dividend = int(tmp, 2)
+        divisor = int(second, 2)
+        print(dividend, divisor)
 
-        counts = result.get_counts("qc")
-        # print(counts)
-        c_dividend_str = list(counts.keys())[0]  # .split()[0]
+        if dividend >= divisor:
 
-        a = qiskit.QuantumRegister(nqubit + 1, "a")
-        b = qiskit.QuantumRegister(nqubit + 1, "b")
-        cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
-        qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
+            #dividend = '{0:{fill}5b}'.format(dividend, fill='0')
 
-        initQubits(first, qc, a, nqubit)
-        initQubits(second, qc, b, nqubit)
+            #print(dividend, second)
+            #dividend = '{0:{fill}5b}'.format(dividend, fill='0')
 
-    sub(accumulator, d, circ)
+            print(dividend, second)
+
+            a = qiskit.QuantumRegister(nqubit + 1, "a")
+            b = qiskit.QuantumRegister(nqubit + 1, "b")
+            cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
+            qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
+
+            initQubits(second, qc, a, nqubit)
+            initQubits(second, qc, b, nqubit)
+            print("ciao")
+        else:
+            quit()
 
 #EXPONENTIAL------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
