@@ -17,6 +17,9 @@ from operations.operationsBASE import *
 
 #def div(dividend, divisor, accumulator, c_dividend, qc, cl_index, nqubit, first, second):
 def div(first, second, dividend, divisor, qc, nqubit, cl):
+
+    pipo = 0
+
     while True:
         sub(dividend, divisor, qc)
 
@@ -32,29 +35,32 @@ def div(first, second, dividend, divisor, qc, nqubit, cl):
         for key, value in job_stats.items():
             tmp = key
 
-        dividend = int(tmp, 2)
-        divisor = int(second, 2)
-        print(dividend, divisor)
+        numdividend = int(tmp, 2)
+        numdivisor = int(second, 2)
 
-        if dividend >= divisor:
+        if numdividend >= numdivisor:
 
             #dividend = '{0:{fill}5b}'.format(dividend, fill='0')
 
             #print(dividend, second)
-            #dividend = '{0:{fill}5b}'.format(dividend, fill='0')
+            numdividend = '{0:{fill}5b}'.format(numdividend, fill='0')
+            numdivisor = '{0:{fill}5b}'.format(numdivisor, fill='0')
+            #print(numdividend, numdivisor)
 
-            print(dividend, second)
-
-            a = qiskit.QuantumRegister(nqubit + 1, "a")
-            b = qiskit.QuantumRegister(nqubit + 1, "b")
+            dividend = qiskit.QuantumRegister(nqubit + 1, "a")
+            divisor = qiskit.QuantumRegister(nqubit + 1, "b")
             cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
-            qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
+            qc = qiskit.QuantumCircuit(dividend, divisor, cl, name="qc")
 
-            initQubits(second, qc, a, nqubit)
-            initQubits(second, qc, b, nqubit)
-            print("ciao")
+            initQubits(numdividend, qc, dividend, nqubit)
+            initQubits(numdivisor, qc, divisor, nqubit)
+
+            pipo = pipo + 1
         else:
-            quit()
+            pipo = pipo + 1
+            break
+
+    print(pipo)
 
 #EXPONENTIAL------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
@@ -80,7 +86,6 @@ def exponential(a, firstDecBinary, firstDec, secondDec, operator, result, qc, cl
             prob = value
 
         firstDec = int(tmp, 2)
-        #print(firstDec)
 
         if x < (secondDec - 2):
             a = qiskit.QuantumRegister(nqubit + 1, "a")
