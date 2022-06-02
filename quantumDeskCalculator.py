@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
         print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
 
-        check = (input("Vuoi fare ancora operazioni ?? [y/n]\n"))
+        check = (input(bcolors.WARNING + "Vuoi fare ancora operazioni ?? [y/n] \n" + bcolors.WARNING ))
         if (check =='n' or check =='N' or check =='No' or check == 'NO' or check =='no'):
             break
 
