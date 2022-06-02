@@ -19,9 +19,9 @@ def selectOperator():
     operator = input("\nSelect one operator [+ addition, - subtraction, * multiplication, / division, ^ exponential]: ")
     
     # Check valid operator
-    if not(operator in valid_operators):
+    while not(operator in valid_operators):
         print(bcolors.FAIL + f"Invalid operator, you can choose between these: {valid_operators}" + bcolors.ENDC)
-        quit()
+        operator = input("\nSelect one operator valid [+ addition, - subtraction, * multiplication, / division, ^ exponential]: ")
 
     return operator
 

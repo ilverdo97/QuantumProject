@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     while True:
 
-        print(bcolors.OKGREEN + '##################  Quantum Desk Calculator  ###################' + bcolors.ENDC)
+        print(bcolors.OKGREEN + '##############################  Quantum Desk Calculator  ###############################' + bcolors.ENDC)
 
         # take the operator and check
         operator = selectOperator()
@@ -81,7 +81,9 @@ if __name__ == "__main__":
 
         print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
 
-        check = (input(bcolors.WARNING + "Vuoi fare ancora operazioni ?? [y/n] \n" + bcolors.WARNING ))
-        if (check =='n' or check =='N' or check =='No' or check == 'NO' or check =='no'):
+        check = (input(bcolors.WARNING + "Would you like insert another operations ? ?? [y/n] \n" + bcolors.WARNING ))
+        if (check =='y' or check =='Y' or check =='Yes' or check == 'YES' or check =='yes'):
+            True
+        elif (check =='n' or check =='N' or check =='No' or check == 'NO' or check =='no'):
             break
 
