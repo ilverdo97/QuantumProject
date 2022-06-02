@@ -82,3 +82,9 @@ def printResult(first, second, qc, result, cl, n, operator):
 
     #print(qc.decompose().draw())
 
+def initQubits(str, qc, reg, n):
+    # Capovolgere il qubit corrispondente nel registro se un bit nella stringa è un 1
+    for i in range(n):
+        if str[i] == "1":
+            qc.x(reg[n-(i+1)])
+
