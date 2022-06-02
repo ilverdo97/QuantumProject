@@ -1,7 +1,7 @@
 from qiskit import *
 import math
-import time
-import progressbar
+#import time
+#import progressbar
 
 class bcolors:
     HEADER = '\033[95m'
@@ -16,7 +16,7 @@ class bcolors:
 
 def selectOperator():
     valid_operators = ["+", "-", "*", "/", "^"]
-    operator = input("\nSelect one operator [+ addition, - subtraction, * multiplication, / division, ^ exponential]:  ")
+    operator = input("\nSelect one operator [+ addition, - subtraction, * multiplication, / division, ^ exponential]: ")
     
     # Check valid operator
     if not(operator in valid_operators):
@@ -25,14 +25,22 @@ def selectOperator():
 
     return operator
 
-def checkNumber(input1, input2):
+def checkNumber(input1, input2, operator):
     # check the inputs
-    while (input1 < 0 or input1 > 2047) or (input2 < 0 or input2 > 2047):
-        if input1 < 0 or input1 > 2047:
-            input1 = int(input("Enter a first positive integer between 0 and 2047:\n"))
+    while (input1 < 0 or input1 > 2000) or (input2 < 0 or input2 > 2000):
+        if (operator == '+' or operator == '-' or operator == '*' or operator == '/'):
+            if input1 < 0 or input1 > 2000:
+                input1 = int(input("Enter a first positive integer between 0 and 2000:\n"))
 
-        if input2 < 0 or input2 > 2047:
-            input2 = int(input("Enter a second positive integer between 0 and 2047:\n"))
+            if input2 < 0 or input2 > 2000:
+                input2 = int(input("Enter a second positive integer between 0 and 2000:\n"))
+        elif operator == '^':
+            if input1 < 0 or input1 > 2000:
+                input1 = int(input("Enter a first positive integer between 0 and 2000:\n"))
+
+            if input2 < 0 or input2 > 2000:
+                input2 = int(input("Enter with esponential:\n"))
+
 
     return input1, input2
 
@@ -59,8 +67,8 @@ def printResult(first, second, qc, result, cl, n, operator):
     #print(bcolors.BOLD + bcolors.OKCYAN + f'Running the experiment on {num_shots} shots...' + bcolors.ENDC)
     job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=num_shots)
 
-    for i in progressbar.progressbar(range(100)):
-        time.sleep(0.005*n)
+    #for i in progressbar.progressbar(range(100)):
+    #    time.sleep(0.005*n)
 
     # Get results of program
     job_stats = job.result().get_counts()
@@ -73,3 +81,4 @@ def printResult(first, second, qc, result, cl, n, operator):
     print(bcolors.BOLD + bcolors.OKGREEN + f'\n{int(first, 2)} {operator} {int(second,2)} = {int(res, 2)} with a probability of {prob}%' + bcolors.ENDC)
 
     #print(qc.decompose().draw())
+
