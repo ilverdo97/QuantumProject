@@ -9,7 +9,7 @@ from qiskit import *
 
 from functions.utils import printResult, bcolors
 from functions.utilsQFT import *
-from functions.utilsQubit import initQubits
+from functions.utilsQubit import initQubits, NQubit
 
 #DIVISION---------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
@@ -35,23 +35,33 @@ def div(first, second, dividend, divisor, qc, nqubit, cl):
         for key, value in job_stats.items():
             tmp = key
 
+        #print(tmp, second)
         numdividend = int(tmp, 2)
         numdivisor = int(second, 2)
 
+        #print(numdividend, numdivisor)
+
         if numdividend >= numdivisor:
 
-            #dividend = '{0:{fill}5b}'.format(dividend, fill='0')
-
             #print(dividend, second)
-            numdividend = '{0:{fill}5b}'.format(numdividend, fill='0')
-            numdivisor = '{0:{fill}5b}'.format(numdivisor, fill='0')
+            numdividend = '{0:{fill}11b}'.format(numdividend, fill='0')
+            numdivisor = '{0:{fill}11b}'.format(numdivisor, fill='0')
             #print(numdividend, numdivisor)
+
+            len1 = len(numdividend)
+            len2 = len(numdivisor)
+            #print(len1, len2)
+
+            #nqubit, len1, len2, first, second = NQubit("/", len1, len2, numdividend, numdivisor)
 
             dividend = qiskit.QuantumRegister(nqubit + 1, "a")
             divisor = qiskit.QuantumRegister(nqubit + 1, "b")
             cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
             qc = qiskit.QuantumCircuit(dividend, divisor, cl, name="qc")
 
+            #print("/////////////")
+            #print(numdividend, nqubit)
+            #print(numdivisor, nqubit)
             initQubits(numdividend, qc, dividend, nqubit)
             initQubits(numdivisor, qc, divisor, nqubit)
 
