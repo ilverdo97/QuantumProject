@@ -16,6 +16,7 @@ The circuit must be implemented in Qiskit and demonstrated on a one or two insta
 - [x] Subtraction using QFT
 - [x] Multiplication using continuous QFT sum
 - [x] Division using subtraction and addition implemented via QFT
+- [x] Esponential with QFT 
 
 
 ### Clone the repository
