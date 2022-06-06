@@ -1,11 +1,5 @@
-import qiskit
-from qiskit import *
-
-from functions.utils import printResult
 from functions.utilsQFT import *
 import math
-from functions.utilsQubit import initQubits
-
 pie = math.pi
 
 def sum(a, b, qc):

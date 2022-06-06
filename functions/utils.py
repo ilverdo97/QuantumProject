@@ -1,18 +1,17 @@
+import time
+import progressbar
 from qiskit import *
-import math
-#import time
-#import progressbar
 
 class bcolors:
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 def selectOperator():
     valid_operators = ["+", "-", "*", "/", "^"]
@@ -67,8 +66,8 @@ def printResult(first, second, qc, result, cl, n, operator):
     #print(bcolors.BOLD + bcolors.OKCYAN + f'Running the experiment on {num_shots} shots...' + bcolors.ENDC)
     job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=num_shots)
 
-    #for i in progressbar.progressbar(range(100)):
-    #    time.sleep(0.005*n)
+    for i in progressbar.progressbar(range(100)):
+        time.sleep(0.005*n)
 
     # Get results of program
     job_stats = job.result().get_counts()

@@ -1,24 +1,13 @@
-#ADDICTION--------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------
-import math
-
-import time
-import progressbar
 import qiskit
-from qiskit import *
-
-from functions.utils import printResult, bcolors
-from functions.utilsQFT import *
-from functions.utilsQubit import initQubits, NQubit
+from functions.utils import *
+from functions.utilsQubit import *
+from operations.operationsBASE import *
 
 #DIVISION---------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-from operations.operationsBASE import *
-
-#def div(dividend, divisor, accumulator, c_dividend, qc, cl_index, nqubit, first, second):
 def div(first, second, dividend, divisor, qc, nqubit, cl):
 
-    pipo = 0
+    result = 0
 
     while True:
         sub(dividend, divisor, qc)
@@ -34,47 +23,42 @@ def div(first, second, dividend, divisor, qc, nqubit, cl):
 
         for key, value in job_stats.items():
             tmp = key
+            prob = value
 
-        #print(tmp, second)
         numdividend = int(tmp, 2)
         numdivisor = int(second, 2)
 
-        #print(numdividend, numdivisor)
-
+        result = result + 1
         if numdividend >= numdivisor:
 
-            #print(dividend, second)
             numdividend = '{0:{fill}11b}'.format(numdividend, fill='0')
             numdivisor = '{0:{fill}11b}'.format(numdivisor, fill='0')
-            #print(numdividend, numdivisor)
 
             len1 = len(numdividend)
             len2 = len(numdivisor)
-            #print(len1, len2)
-
-            #nqubit, len1, len2, first, second = NQubit("/", len1, len2, numdividend, numdivisor)
+            nqubit, len1, len2, newnum, second = NQubit("/", len1, len2, numdividend, numdivisor)
 
             dividend = qiskit.QuantumRegister(nqubit + 1, "a")
             divisor = qiskit.QuantumRegister(nqubit + 1, "b")
             cl = qiskit.ClassicalRegister(nqubit + 1, "cl")
             qc = qiskit.QuantumCircuit(dividend, divisor, cl, name="qc")
-
-            #print("/////////////")
-            #print(numdividend, nqubit)
-            #print(numdivisor, nqubit)
             initQubits(numdividend, qc, dividend, nqubit)
             initQubits(numdivisor, qc, divisor, nqubit)
 
-            pipo = pipo + 1
         else:
-            pipo = pipo + 1
             break
 
-    print(pipo)
+    print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
+
+    for i in progressbar.progressbar(range(100)):
+        time.sleep(0.005 * nqubit)
+
+    print(
+        bcolors.BOLD + bcolors.OKGREEN + f'\n{int(first, 2)} / {numdivisor} = {result} with a probability of {prob}%' + bcolors.ENDC)
+
 
 #EXPONENTIAL------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-
 def exponential(a, firstDecBinary, firstDec, secondDec, operator, result, qc, cl, nqubit):
 
     for x in range(secondDec - 1):

@@ -1,11 +1,5 @@
-import qiskit
-
-from functions.utils import bcolors, selectOperator, checkNumber, checkOperation, printResult
-from functions.utilsQubit import NQubit, initQubits
-from operations.operationsADVANCE import exponential, div
-from operations.operationsBASE import sub, multiply
-from operations import *
-from functions import *
+from operations.operationsADVANCE import *
+from operations.operationsBASE import *
 
 if __name__ == "__main__":
 
@@ -60,7 +54,6 @@ if __name__ == "__main__":
                 sum(a,b,qc)
                 printResult(first, second, qc, a, cl, nqubit, operator)
             elif operator == '-':
-                print(first, second)
                 sub(a,b,qc)
                 printResult(first, second, qc, a, cl, nqubit, operator)
             elif operator == '*':
@@ -78,7 +71,6 @@ if __name__ == "__main__":
             initQubits(second, qc, b, nqubit)
 
             div(first, second, a, b, qc, nqubit, cl)
-            printResult(first, second, qc, accumulator, cl, nqubit, operator)
 
         print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
 
