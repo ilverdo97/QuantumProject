@@ -81,9 +81,13 @@ def printResult(first, second, qc, result, cl, n, operator):
 
     #print(qc.decompose().draw())
 
-def initQubits(str, qc, reg, n):
-    # Capovolgere il qubit corrispondente nel registro se un bit nella stringa è un 1
-    for i in range(n):
-        if str[i] == "1":
-            qc.x(reg[n-(i+1)])
+def printResultADVANCE(prtFirst, prtSecond, prtResult, prtProb, operator, nqubit):
+    print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
+
+    for i in progressbar.progressbar(range(100)):
+        time.sleep(0.005 * nqubit)
+
+    print(
+        bcolors.BOLD + bcolors.OKGREEN + f'\n{prtFirst} {operator} {prtSecond} = {prtResult} with a probability of {prtProb}%' + bcolors.ENDC)
+
 

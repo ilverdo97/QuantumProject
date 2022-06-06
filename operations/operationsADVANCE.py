@@ -8,22 +8,9 @@ from operations.operationsBASE import *
 def div(first, second, dividend, divisor, qc, nqubit, cl):
 
     result = 0
-
     while True:
         sub(dividend, divisor, qc)
-
-        # Measure qubits
-        for i in range(nqubit + 1):
-            qc.measure(dividend[i], cl[i])
-
-        job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=100)
-
-        # Get results of program
-        job_stats = job.result().get_counts()
-
-        for key, value in job_stats.items():
-            tmp = key
-            prob = value
+        tmp, prob = collass(qc, dividend, cl, nqubit)
 
         numdividend = int(tmp, 2)
         numdivisor = int(second, 2)
@@ -48,13 +35,7 @@ def div(first, second, dividend, divisor, qc, nqubit, cl):
         else:
             break
 
-    print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
-
-    for i in progressbar.progressbar(range(100)):
-        time.sleep(0.005 * nqubit)
-
-    print(
-        bcolors.BOLD + bcolors.OKGREEN + f'\n{int(first, 2)} / {numdivisor} = {result} with a probability of {prob}%' + bcolors.ENDC)
+    return int(first, 2), numdivisor, result, prob
 
 
 #EXPONENTIAL------------------------------------------------------------------------------------------
@@ -63,21 +44,8 @@ def exponential(a, firstDecBinary, firstDec, secondDec, operator, result, qc, cl
 
     for x in range(secondDec - 1):
 
-        #print(firstDecBinary, firstDec)
         multiply(a, firstDec, result, qc)
-
-        # Measure qubits
-        for i in range(nqubit + 1):
-            qc.measure(result[i], cl[i])
-
-        job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=100)
-
-        # Get results of program
-        job_stats = job.result().get_counts()
-
-        for key, value in job_stats.items():
-            tmp = key
-            prob = value
+        tmp, prob = collass(qc, result, cl, nqubit)
 
         firstDec = int(tmp, 2)
 
@@ -88,11 +56,6 @@ def exponential(a, firstDecBinary, firstDec, secondDec, operator, result, qc, cl
             qc = qiskit.QuantumCircuit(a, b, cl, name="qc")
             initQubits(firstDecBinary, qc, a, nqubit)
 
-    print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
-
-    for i in progressbar.progressbar(range(100)):
-        time.sleep(0.005*nqubit)
-
     if secondDec == 0:
         firstDec = 1
         prob = 100
@@ -100,4 +63,4 @@ def exponential(a, firstDecBinary, firstDec, secondDec, operator, result, qc, cl
         firstDec = int(firstDecBinary, 2)
         prob = 100
 
-    print(bcolors.BOLD + bcolors.OKGREEN + f'\n{int(firstDecBinary, 2)} {operator} {secondDec} = {firstDec} with a probability of {prob}%' + bcolors.ENDC)
+    return int(firstDecBinary, 2), secondDec, firstDec, prob

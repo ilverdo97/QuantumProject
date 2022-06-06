@@ -60,9 +60,8 @@ if __name__ == "__main__":
                 multiply(a,input2,b,qc)
                 printResult(first, second, qc, b, cl, nqubit ,operator)
             elif operator == '^':
-                exponential(a, first, input1, input2, operator, b, qc, cl, nqubit)
-                #printResult(first, second, qc, a, cl, nqubit , operator)
-
+                prtFirst, prtSecond, prtResult, prtProb = exponential(a, first, input1, input2, operator, b, qc, cl, nqubit)
+                printResultADVANCE(prtFirst, prtSecond, prtResult, prtProb, operator, nqubit)
 
         elif operator == '/':
             qc = qiskit.QuantumCircuit(a, b, accumulator, cl, name="qc")
@@ -70,7 +69,8 @@ if __name__ == "__main__":
             initQubits(first, qc, a, nqubit)
             initQubits(second, qc, b, nqubit)
 
-            div(first, second, a, b, qc, nqubit, cl)
+            prtFirst, prtSecond, prtResult, prtProb = div(first, second, a, b, qc, nqubit, cl)
+            printResultADVANCE(prtFirst, prtSecond, prtResult, prtProb, operator, nqubit)
 
         print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
 
