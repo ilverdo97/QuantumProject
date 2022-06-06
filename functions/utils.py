@@ -24,8 +24,11 @@ def selectOperator():
 
     return operator
 
-def checkNumber(input1, input2, operator):
+def checkNumber(operator):
     # check the inputs
+
+    input1 = -1
+    input2 = -1
     while (input1 < 0 or input1 > 2000) or (input2 < 0 or input2 > 2000):
         if (operator == '+' or operator == '-' or operator == '*' or operator == '/'):
             if input1 < 0 or input1 > 2000:
@@ -39,7 +42,6 @@ def checkNumber(input1, input2, operator):
 
             if input2 < 0 or input2 > 2000:
                 input2 = int(input("Enter with esponential:\n"))
-
 
     return input1, input2
 

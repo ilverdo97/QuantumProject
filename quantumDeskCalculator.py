@@ -12,9 +12,7 @@ if __name__ == "__main__":
         operator = selectOperator()
 
         # take number
-        input1 = -1
-        input2 = -1
-        input1, input2 = checkNumber(input1, input2, operator)
+        input1, input2 = checkNumber(operator)
 
         # check if the operations is valid
         checkOperation(input1, input2, operator)
