@@ -40,7 +40,7 @@ def div(first, second, dividend, divisor, qc, nqubit, cl):
 
 #EXPONENTIAL------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-def exponential(a, firstDecBinary, firstDec, secondDec, operator, result, qc, cl, nqubit):
+def exponential(a, firstDecBinary, firstDec, secondDec, result, qc, cl, nqubit):
 
     for x in range(secondDec - 1):
 
