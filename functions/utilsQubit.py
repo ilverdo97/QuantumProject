@@ -21,11 +21,11 @@ def NQubit(operator, len1, len2, first, second):
 
     return tmpnqubit, len1, len2, first, second
 
-def collass(qc, mesure, cl, nqubit):
+def collass(qc, measure, cl, nqubit):
 
     # Measure qubits
     for i in range(nqubit + 1):
-        qc.measure(mesure[i], cl[i])
+        qc.measure(measure[i], cl[i])
 
     job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=100)
     # Get results of program
