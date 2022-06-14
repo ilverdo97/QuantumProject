@@ -39,7 +39,7 @@ python quantumDeskCalculator.py
 ![](https://i.imgur.com/j6Y99So.png)
 #### Division:
 > 
-![]([https://i.imgur.com/Qgg1ebh.png](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20Division.png))
+![](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20Division.png)
 #### Exponential:
 > 
 ![](https://i.imgur.com/Qgg1ebh.png)
