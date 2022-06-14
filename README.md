@@ -29,19 +29,19 @@ python quantumDeskCalculator.py
 
 ### Example of esecution
 #### Addition:
-> 320 (101000000) + 150 (10010110) = 470 (0111010110)
+> 
 ![](https://i.imgur.com/cf8xpIX.png)
 #### Subtraction:
-> 1200 (10010110000) - 547 (1000100011) = 653 (001010001101)
+> 
 ![](https://i.imgur.com/N7upjvD.png)
 #### Multiplication:
-> 53 (110101) * 4 (100) = 212 (0011010100)
+> 
 ![](https://i.imgur.com/j6Y99So.png)
 #### Division:
-> 12 (1100) / 5 (0101) = 2 (0010)
+> 
 ![](https://i.imgur.com/Qgg1ebh.png)
 #### Exponential:
-> 2 (0010) / 3 (0011) = 8 (1000)
+> 
 ![](https://i.imgur.com/Qgg1ebh.png)
 
 ## Authors
