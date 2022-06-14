@@ -2,6 +2,8 @@ from functions.utilsQFT import *
 import math
 pie = math.pi
 
+#SUMTRACTION------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------
 def sum(a, b, qc):
     n = len(a) - 1
     # Compute the Fourier transform of register a
@@ -36,7 +38,6 @@ def sub(a, b, qc):
 
 #MULTIPLICATION---------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------
-
 def multiply(a, secondDec, result, qc):
     n = len(a) - 1
     # Compute the Fourier transform of register 'result'

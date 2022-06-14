@@ -49,7 +49,7 @@ pie: pie number
 '''
 
 def evolveQFTStateSub(qc, reg_a, reg_b, n, pie):
-    # Evolves the state |F(ψ(reg_a))> to |F(ψ(reg_a+reg_b))> using the quantum
+    # Evolves the state |F(ψ(reg_a))> to |F(ψ(reg_a-reg_b))> using the quantum
     # Fourier transform conditioned on the qubits of the reg_b.
     # Apply repeated phase rotations with parameters being pi divided by
     # increasing powers of two.

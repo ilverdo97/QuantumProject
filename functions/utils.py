@@ -54,42 +54,40 @@ def checkOperation(input1, input2, operator):
         print(bcolors.FAIL + f"Invalid operation, division by 0 is not allowed" + bcolors.ENDC)
         quit()
 
+# Collass the circuit and print result of operation
 def printResult(first, second, qc, result, cl, n, operator):
+    # Execute using the local simulator
+    print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
+
     # Measure qubits
     for i in range(n+1):
         qc.measure(result[i], cl[i])
 
-    # Execute using the local simulator
-    print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
-
-    # Set chosen backend and execute job
+    # Set chosen backend and execute job and get result
     num_shots = 100 #Setting the number of times to repeat measurement
-    #print(bcolors.BOLD + bcolors.OKCYAN + 'Connect!' + bcolors.ENDC)
-    #print(bcolors.BOLD + bcolors.OKCYAN + f'Running the experiment on {num_shots} shots...' + bcolors.ENDC)
-    job = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=num_shots)
+    job_stats = execute(qc, backend=Aer.get_backend('qasm_simulator'), shots=num_shots).result().get_counts()
 
-    for i in progressbar.progressbar(range(100)):
-        time.sleep(0.005*n)
-
-    # Get results of program
-    job_stats = job.result().get_counts()
-
+    # Take the result and value of job
     for key, value in job_stats.items():
         res = key
         prob = value
 
+    for i in progressbar.progressbar(range(100)):
+        time.sleep(0.005*n)
+
     #print(bcolors.BOLD + bcolors.OKGREEN + f'\n{first} {operator} {second} = {res} with a probability of {prob}%' + bcolors.ENDC)
     print(bcolors.BOLD + bcolors.OKGREEN + f'\n{int(first, 2)} {operator} {int(second,2)} = {int(res, 2)} with a probability of {prob}%' + bcolors.ENDC)
 
+    # Print circuit
     #print(qc.decompose().draw())
 
+# Print result, because the in operation we go collass operation for temporaly result
 def printResultADVANCE(prtFirst, prtSecond, prtResult, prtProb, operator, nqubit):
     print(bcolors.BOLD + bcolors.OKCYAN + 'Create and Connecting to local simulator...' + bcolors.ENDC)
 
     for i in progressbar.progressbar(range(100)):
         time.sleep(0.005 * nqubit)
 
-    print(
-        bcolors.BOLD + bcolors.OKGREEN + f'\n{prtFirst} {operator} {prtSecond} = {prtResult} with a probability of {prtProb}%' + bcolors.ENDC)
+    print(bcolors.BOLD + bcolors.OKGREEN + f'\n{prtFirst} {operator} {prtSecond} = {prtResult} with a probability of {prtProb}%' + bcolors.ENDC)
 
 

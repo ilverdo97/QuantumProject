@@ -3,7 +3,6 @@ from operations.operationsBASE import *
 
 if __name__ == "__main__":
 
-
     while True:
 
         print(bcolors.OKGREEN + '##############################  Quantum Desk Calculator  ###############################' + bcolors.ENDC)
@@ -11,27 +10,25 @@ if __name__ == "__main__":
         # take the operator and check
         operator = selectOperator()
 
-        # take number
+        # take and check number
         input1, input2 = checkNumber(operator)
 
         # check if the operations is valid
         checkOperation(input1, input2, operator)
 
+        # covert number in binary for register
         first = '{0:{fill}5b}'.format(input1, fill='0')
         second = '{0:{fill}5b}'.format(input2, fill='0')
         len1 = len(first)
         len2 = len(second)
 
-        # Making sure that 'first' and 'second' are of the same length
-        # by padding the smaller string with zeros
-
+        # Calculate the correct number of qubit for operations
         nqubit, len1, len2, first, second = NQubit(operator, len1, len2, first, second)
         print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
         print('You want to perform the following operations:')
         print(f'{input1} {operator} {input2} = ...')
 
         # create the register based on the operations choosen
-
         # Add a qbit to 'a' and 'b' in case of overflowing results
         # (the result is only read on 'a' or 'accumulator', but since 'a' (or 'accumulator') and 'b'
         # should have the same lenght, we also add a qbit to 'b')
@@ -46,6 +43,9 @@ if __name__ == "__main__":
         if operator == '+' or operator == '-' or operator == '/':
             initQubits(second, qc, b, nqubit)
 
+        # Program switch in operation
+
+        # BASE
         if operator == '+':
             sum(a,b,qc)
             printResult(first, second, qc, a, cl, nqubit, operator)
@@ -55,6 +55,8 @@ if __name__ == "__main__":
         elif operator == '*':
             multiply(a,input2,b,qc)
             printResult(first, second, qc, b, cl, nqubit ,operator)
+
+        # ADVANCE
         elif operator == '/':
             prtFirst, prtSecond, prtResult, prtProb = div(first, second, a, b, qc, nqubit, cl)
             printResultADVANCE(prtFirst, prtSecond, prtResult, prtProb, operator, nqubit)
@@ -64,6 +66,7 @@ if __name__ == "__main__":
 
         print(bcolors.OKCYAN + '#'*150 + bcolors.ENDC)
 
+        # Select a new operation or close program
         check = (input(bcolors.WARNING + "Would you like insert another operations ? ?? [y/n] \n" + bcolors.WARNING ))
         if (check =='y' or check =='Y' or check =='Yes' or check == 'YES' or check =='yes'):
             True
