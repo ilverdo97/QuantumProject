@@ -29,20 +29,20 @@ python quantumDeskCalculator.py
 
 ### Example of esecution
 #### Addition:
-> 
-![](https://i.imgur.com/cf8xpIX.png)
+> 1008 + 1008 = 2016
+![](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20SUMtraction.png)
 #### Subtraction:
-> 
-![](https://i.imgur.com/N7upjvD.png)
+> 50 - 24 = 26
+![](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20SUBtraction.png)
 #### Multiplication:
-> 
-![](https://i.imgur.com/j6Y99So.png)
+> 5 * 5 = 25
+![](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20Multiplication.png)
 #### Division:
-> 
+> 15 / 3 = 5
 ![](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20Division.png)
 #### Exponential:
-> 
-![](https://i.imgur.com/Qgg1ebh.png)
+> 5 ^ 3 = 125
+![](https://github.com/ilverdo97/QuantumProject/blob/main/figure/Figure%20Exponential.png)
 
 ## Authors
 * **Luca Verdolini** - [ilverdo97](https://github.com/ilverdo97)
