@@ -7,14 +7,14 @@ The circuit must be implemented in Qiskit and demonstrated on a one or two insta
 ## Implementation details
 ### Prerequisites
 - Python3.7+
-- qiskit
+- Qiskit
 
 ### Operations implemented:
 - [x] Addition using QFT
 - [x] Subtraction using QFT
 - [x] Multiplication using Addition QFT
 - [x] Division using Subtraction QFT
-- [x] Exponential using Multiplication
+- [x] Exponential using Multiplication QFT
 
 ### Clone the repository
 ```
